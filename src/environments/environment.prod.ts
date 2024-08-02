@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'https://fake-trello-api.herokuapp.com/api/v1'
 };

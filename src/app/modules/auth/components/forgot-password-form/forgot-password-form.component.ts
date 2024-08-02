@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../../../services/auth.service';
 @Component({
   selector: 'app-forgot-password-form',
   templateUrl: './forgot-password-form.component.html'
@@ -14,13 +15,22 @@ export class ForgotPasswordFormComponent {
 
   constructor(
     private formBuilder: FormBuilder,
+    private authService: AuthService
   ) { }
 
   sendLink() {
     if (this.form.valid) {
       this.status = 'loading';
       const { email } = this.form.getRawValue();
-      // TODO: Connect
+      this.authService.recovery(email).subscribe({
+        next: () => {
+          this.status = 'success';
+          this.emailSent = true;
+        },
+        error: Error => {
+          this.status = 'failed';
+        }
+      })
     } else {
       this.form.markAllAsTouched();
     }

@@ -7,11 +7,11 @@ import { BoardComponent } from './pages/board/board.component';
 const routes: Routes = [
   {
     path: '',
-    component: BoardsComponent
+    component: BoardsComponent,
   },
   {
     path: ':id',
-    component: BoardComponent
+    component: BoardComponent,
   },
 ];
 
